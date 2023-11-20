@@ -1,0 +1,13 @@
+
+import React,{Component} from 'react';
+import { Login } from './Login';
+import { Register } from './Register';
+
+export class Home extends Component {
+
+    render(){
+        return(
+            <><><p>Welcome</p><Login /></><Register /></>
+        )
+    }
+}
