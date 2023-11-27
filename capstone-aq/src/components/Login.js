@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import './Login.css';
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email, pass);
-    }
+        // Additional logic for handleSubmit
+    };
+
+    const handleRegisterNavigate = () => {
+        navigate('/register');
+    };
 
     return (
         <div className="login-container">
@@ -21,7 +28,7 @@ export const Login = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         type="email"
-                        placeholder="youremail@gmail.com"
+                        placeholder="email"
                         id="email"
                         name="email"
                         className="form-control"
@@ -42,12 +49,12 @@ export const Login = () => {
                 <Button variant="primary" type="submit">
                     Log In
                 </Button>
-                <div className="secondary-action">
+                <button type="button" onClick={handleRegisterNavigate}>
                     Don't have an account? Register here!
-                </div>
+                </button>
             </form>
         </div>
     );
-}
+};
 
 export default Login;
