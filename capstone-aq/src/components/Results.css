@@ -1,0 +1,38 @@
+.results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--background-color);
+    font-family: 'Roboto', sans-serif;
+}
+
+.result {
+    background-color: #bba0e6; /* Light purple shade */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    color: #4a2a66; /* Darker purple for text */
+    width: 60%; /* Adjust as necessary */
+}
+
+.result h3 {
+    margin-bottom: 10px;
+    color: #4a2a66;
+}
+
+.start-session-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6200EE; /* Primary brand color */
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.start-session-button:hover {
+    background-color: #3700B3;
+}

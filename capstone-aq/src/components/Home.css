@@ -1,0 +1,52 @@
+.home-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #dcd0ff; /* Consistent with your theme */
+    height: 100vh;
+}
+
+.home-container h1 {
+    color: #4a2a66;
+}
+
+.home-container p {
+    color: #4a2a66;
+    margin-bottom: 20px;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dashboard-link {
+    background-color: #6200EE;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Removes underline from links */
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-link:hover {
+    background-color: #3700B3;
+}
+
+.continue-session-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: var(--primary-color); /* Use your primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.continue-session-btn:hover {
+    background-color: darken(var(--primary-color), 10%); /* Darker shade on hover */
+}

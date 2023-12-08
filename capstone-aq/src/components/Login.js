@@ -5,54 +5,63 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email, pass);
-        // Additional logic for handleSubmit
-    };
 
     const handleRegisterNavigate = () => {
         navigate('/register');
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(email, password);
+        // Additional logic for handleSubmit
+    };
+
     return (
         <div className="login-container">
-            <form className="login-form" onSubmit={handleSubmit}>
+            <div className="navigation-bar">
+                {/* Navigation Bar Content */}
+            </div>
+            
+            <div className="login-section">
                 <h2>Log In</h2>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="email"
-                        placeholder="email"
-                        id="email"
-                        name="email"
-                        className="form-control"
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        value={pass}
-                        onChange={(e) => setPass(e.target.value)}
-                        type="password"
-                        placeholder="*********"
-                        id="password"
-                        name="password"
-                        className="form-control"
-                    />
-                </div>
-                <Button variant="primary" type="submit">
-                    Log In
-                </Button>
-                <button type="button" onClick={handleRegisterNavigate}>
-                    Don't have an account? Register here!
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="email"
+                            placeholder="Email"
+                            id="email"
+                            name="email"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            type="password"
+                            placeholder="Password"
+                            id="password"
+                            name="password"
+                            className="form-control"
+                        />
+                    </div>
+                    <Button variant="primary" type="submit">Log In</Button>
+                </form>
+            </div>
+            
+            <div className="get-started-section">
+                <h3>Get Started</h3>
+                <p>Join us now to enhance your study methods!</p>
+                <button onClick={handleRegisterNavigate} className="get-started-button">
+                    Register
                 </button>
-            </form>
+            </div>
         </div>
     );
 };

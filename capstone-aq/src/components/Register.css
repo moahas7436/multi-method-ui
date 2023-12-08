@@ -1,61 +1,61 @@
-.form-container {
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #3e5b87e3; /* Soft background color */
-    font-family: 'Arial', sans-serif;
+    background-color: #dcd0ff; /* Soft light purple background */
+    font-family: 'Roboto', sans-serif; /* Readable font */
 }
 
-.form-content {
+.register-form {
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.444);
+    background: #bba0e6; /* Light purple shade */
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
     text-align: center;
+    color: #4a2a66; /* Darker purple for text */
 }
 
-.form-content h2 {
+.register-form h2 {
     margin-bottom: 1.5rem;
-    color: #ece4e4;
+    color: #4a2a66; /* Darker purple for text */
 }
 
-.form-content label {
-    display: block;
+.register-form label {
     text-align: left;
-    margin: 10px 0 5px;
-    color: #f6f4f4;
-    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 5px;
+    color: #4a2a66; /* Darker text for readability */
 }
 
-.form-content input {
+.register-form input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 1rem;
     border-radius: 5px;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid #bba0e6; /* Border color similar to background */
     font-size: 1rem;
+    background: #f3eaff; /* Very light purple for input fields */
+    color: #4a2a66; /* Darker text for input fields */
 }
 
-.form-content button {
-    width: 100%;
-    padding: 10px;
+.btn-primary {
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white;
-    font-size: 1rem;
+    background-color: #6200EE; /* Primary brand color */
+    color: white; /* White text for contrast */
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.form-content button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
+.btn-primary:hover {
+    background-color: #3700B3; /* A bit darker purple on hover */
 }
 
-.form-content .secondary-action {
+.secondary-action {
     margin-top: 1rem;
     font-size: 0.9rem;
     color: #007bff;
@@ -63,6 +63,24 @@
     text-decoration: underline;
 }
 
-.form-content .secondary-action:hover {
+.secondary-action:hover {
     color: #0056b3;
+}
+
+.register-form .form-check {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.register-form .form-check-input {
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    margin-right: 0.5rem; /* Space between checkbox and label */
+}
+
+.register-form .form-check-label {
+    margin: 0;
+    font-size: 0.9rem; /* Adjust label font size as needed */
+    color: #4a2a66; /* Color to match your form styling */
 }
