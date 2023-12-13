@@ -1,0 +1,31 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #1a1a1a; /* Dark background */
+    color: #ffffff; /* White text */
+    font-family: 'Comic Neue', cursive;
+    height: 100vh;
+}
+
+.profile-container h2 {
+    color: #ffffff; /* White text */
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    background: #333333; /* Dark shade */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 500px;
+    text-align: left;
+}
+
+.profile-details p {
+    margin-bottom: 10px;
+}
+
+/* Add more styling as needed */
