@@ -9,14 +9,59 @@ import './Register.css';
 export const Register = () => {
     const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        console.log('inside handle suibmit')
+        event.preventDefault(); // Prevent default form submission
+        console.log(event.currentTarget)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+            console.log("not valid")
+          event.stopPropagation();
+          return;
         }
+      
         setValidated(true);
-    };
+      
+        // Create a new FormData object from the form
+        const formData = new FormData(form);
+        console.log(formData)
+      
+        // Convert FormData to an object
+        const formDataObject = {};
+        formData.forEach((value, key) => {
+            console.log(key)
+            console.log(value)
+          formDataObject[key] = value;
+        });
+      
+        console.log(formDataObject); // Log the formDataObject
+      
+        // Send a POST request to your server
+        try {
+            console.log(JSON.stringify(formDataObject))
+          const response = await fetch('/api/users/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formDataObject),
+          });
+      
+          if (response.ok) {
+            // Registration was successful, you can redirect or show a success message.
+            console.log('Registration successful');
+            // You can add code to redirect the user or display a success message here.
+          } else {
+            // Registration failed, handle the error.
+            console.error('Registration failed');
+            // You can display an error message to the user here.
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          // Handle network errors or other unexpected issues here.
+        }
+      };
+      
 
     return (
         <div className="register-container">
@@ -29,6 +74,7 @@ export const Register = () => {
                             required
                             type="text"
                             placeholder="First name"
+                            name="first_name"
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
@@ -38,6 +84,7 @@ export const Register = () => {
                             required
                             type="text"
                             placeholder="Last name"
+                            name="last_name"
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
@@ -51,6 +98,7 @@ export const Register = () => {
                                 placeholder="Username"
                                 aria-describedby="inputGroupPrepend"
                                 required
+                                name="username"
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please choose a username.
@@ -61,14 +109,14 @@ export const Register = () => {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6" controlId="validationCustom03">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Email" required />
+                        <Form.Control name="email" type="email" placeholder="Email" required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid email.
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId="validationCustom04">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" required />
+                        <Form.Control name="password" type="password" placeholder="Password" required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid password.
                         </Form.Control.Feedback>
