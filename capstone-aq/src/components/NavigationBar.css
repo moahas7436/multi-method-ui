@@ -1,48 +1,52 @@
 .navbar {
-    background-color: #333;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  background-color: #333; /* Dark background for contrast */
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.5); /* Adds a subtle shadow for depth */
 }
 
 .menu-icon {
-    display: block;
-    cursor: pointer;
-    padding: 14px 16px;
-    color: white;
+  display: block;
+  cursor: pointer;
+  padding: 14px 16px;
+  color: #0af; /* A bright, tech-inspired color */
+  font-size: 1.5rem; /* Increase the size for visibility */
 }
 
 .nav-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: grid; /* Initially hidden */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: none; /* Initially hidden, shown in media query */
+  align-items: center;
 }
 
 .nav-links li {
-    padding: 14px 16px;
-    text-align: center;
+  padding: 14px 16px;
+  text-align: center;
 }
 
 .nav-links li a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+  font-weight: bold; /* Makes the text stand out */
 }
 
 .nav-links li a:hover {
-    background-color: #ddd;
-    color: black;
+  background-color: #444; /* Slightly lighter background on hover */
+  color: #0af; /* Maintaining the tech-inspired color theme */
 }
 
 /* Media query for larger screens */
 @media (min-width: 600px) {
   .menu-icon {
-    display: contents; /* Hide hamburger menu on larger screens */
+      display: internal; /* Hide hamburger menu on larger screens */
   }
 
   .nav-links {
-    display: flex;
-    justify-content: center;
+      display: flex;
+      justify-content: center;
   }
 }

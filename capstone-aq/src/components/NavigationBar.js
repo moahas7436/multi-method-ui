@@ -19,7 +19,7 @@ const NavigationBar = () => {
           <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
           <li><Link to="/login" onClick={toggleMenu}>Login</Link></li>
           <li><Link to="/register" onClick={toggleMenu}>Register</Link></li>
-          <li><Link to="/studymethods" onClick={toggleMenu}>Study Methods</Link></li>
+          <li><Link to="/study-methods" onClick={toggleMenu}>Study Methods</Link></li>
         </ul>
       )}
     </nav>

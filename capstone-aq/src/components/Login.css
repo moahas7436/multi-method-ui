@@ -4,20 +4,20 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #dcd0ff; /* Soft light purple background */
-    font-family: 'Roboto', sans-serif; /* Readable font */
+    background-color: #1a1a1a; /* Dark background */
+    font-family: 'Comic Neue', cursive; /* Comic-like font */
 }
 
 .login-section,
 .get-started-section {
     margin: 20px;
     padding: 20px;
-    background: #bba0e6; /* Light purple shade */
+    background: #333333; /* Dark shade */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 300px;
-    color: #4a2a66; /* Darker purple for text */
+    color: #ffffff; /* White text */
 }
 
 .login-form {
@@ -33,39 +33,37 @@
     text-align: left;
     display: block;
     margin-bottom: 5px;
-    color: #4a2a66; /* Darker text for readability */
+    color: #ffffff; /* White text */
 }
 
 .login-form .form-group input {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #bba0e6; /* Border color similar to background */
+    border: 1px solid #007bff; /* Blue border */
     font-size: 1rem;
-    background: #f3eaff; /* Very light purple for input fields */
-    color: #4a2a66; /* Darker text for input fields */
+    background: #222222; /* Dark background for input fields */
+    color: #ffffff; /* White text */
 }
 
-.login-form button,
-.register-form button { /* Adding Register button styles */
+.login-form button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #6200EE; /* Primary brand color */
-    color: white; /* White text for contrast */
+    background-color: #007bff; /* Bright blue */
+    color: white;
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
-.login-form button:hover,
-.register-form button:hover { /* Adding Register button hover styles */
-    background-color: #3700B3; /* A bit darker purple on hover */
+.login-form button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
 }
 
 .get-started-section {
-    background-color: var(--secondary-color); /* Secondary color */
-    color: #000000; /* Black text for readability */
+    background-color: #0056b3; /* Dark blue */
+    color: #ffffff; /* White text */
     padding: 20px;
     border-radius: 10px;
 }
@@ -79,8 +77,8 @@
 }
 
 .get-started-button {
-    background-color: #4a2a66; /* Complementary dark purple */
-    color: #f3eaff; /* Light text color */
+    background-color: #007bff; /* Bright blue */
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -89,5 +87,5 @@
 }
 
 .get-started-button:hover {
-    background-color: #8d02ff; /* Even darker shade for hover */
+    background-color: #0056b3; /* Darker shade of blue on hover */
 }

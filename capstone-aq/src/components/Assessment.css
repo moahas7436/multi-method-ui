@@ -4,23 +4,25 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #dcd0ff; /* Soft light purple background */
+    background-color: #1a1a1a; /* Dark background */
     height: 100vh;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    color: #ffffff; /* White text */
 }
 
 .assessment-container h2 {
-    color: #4a2a66; /* Darker purple for text */
+    color: #007bff; /* Bright blue */
     margin-bottom: 20px;
+    text-shadow: 2px 2px #000000; /* Black text shadow for contrast */
 }
 
 .question {
-    background: #bba0e6; /* Light purple shade */
+    background: #333333; /* Dark shade for question background */
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #4a2a66; /* Darker purple for text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    color: #ffffff; /* White text */
     width: 100%;
     max-width: 500px;
 }
@@ -33,7 +35,7 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #6200EE; /* Primary brand color */
+    background-color: #007bff; /* Bright blue */
     color: white; /* White text for contrast */
     cursor: pointer;
     font-size: 1rem;
@@ -41,5 +43,5 @@
 }
 
 .submit-btn:hover {
-    background-color: #3700B3; /* A bit darker purple on hover */
+    background-color: #0056b3; /* Darker shade of blue on hover */
 }

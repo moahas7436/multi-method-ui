@@ -2,43 +2,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #dcd0ff; /* Soft light purple background */
-    font-family: 'Roboto', sans-serif; /* Consistent font */
-}
-
-.study-method-card {
-    margin: 20px;
     padding: 20px;
-    background: #bba0e6; /* Light purple shade */
+    min-height: 100vh; /* Ensures that the container fills the screen height */
+    background-color: #1a1a1a; /* Dark background */
+    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    color: white; /* White text */
+}
+
+.study-methods-container h1 {
+    margin-bottom: 20px;
+}
+
+.study-methods-container ul {
+    list-style: none;
+    padding: 0;
+    width: 100%; /* Ensures that the list covers the full width of its container */
+}
+
+.study-methods-container li {
+    background: #333333; /* Dark shade */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Adjust based on preference */
-    text-align: center;
-    color: #4a2a66; /* Darker purple for text */
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 500px;
+    cursor: pointer; /* Indicates that the list items are interactive */
 }
 
-.study-method-card h3 {
+.study-methods-container h2 {
+    color: #007bff; /* Bright blue */
     margin-bottom: 10px;
-    color: #4a2a66; /* Darker text for readability */
 }
 
-.study-method-card p {
-    margin-bottom: 15px;
+.study-methods-container p {
+    margin-bottom: 20px;
 }
 
-.study-method-card button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #6200EE; /* Primary brand color */
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+.method-link {
+    color: #007bff; /* Bright blue */
+    text-decoration: none;
+    display: inline-block; /* Allows for better control of spacing and interaction */
+    margin-top: 10px; /* Adds space above the link */
 }
 
-.study-method-card button:hover {
-    background-color: #3700B3; /* Darker purple on hover */
+.method-link:hover {
+    text-decoration: underline;
 }

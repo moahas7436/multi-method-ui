@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './Assessment.css';
 import { useNavigate } from 'react-router-dom';
+import './Assessment.css';
 
-export const Assessment = () => {
-    const [answers, setAnswers] = useState({});
-
+const Assessment = () => {
+    const navigate = useNavigate();
     const questions = [
         "Do you prefer short, focused study sessions?",
         "Are you comfortable with intensive learning in a short time?",
@@ -16,11 +15,11 @@ export const Assessment = () => {
         "Are you able to concentrate for long periods without distraction?"
     ];
 
+    const [answers, setAnswers] = useState(questions.reduce((acc, _, index) => ({ ...acc, [index]: null }), {}));
+
     const handleAnswerChange = (questionIndex, answer) => {
         setAnswers({ ...answers, [questionIndex]: answer });
     };
-
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,25 +54,18 @@ export const Assessment = () => {
     );
 };
 
-export default Assessment;
-
 function calculateStudyMethod(answers) {
     const scores = {
-        "Pomodoro": 0,
-        "321": 0,
-        "Feynman": 0,
-        "Spaced Repetition": 0,
-        "Priming": 0
+        "Pomodoro": answers[0] === 'yes' ? 1 : 0,
+        "321": answers[1] === 'yes' ? 1 : 0,
+        "Feynman": answers[2] === 'yes' ? 1 : 0,
+        "Spaced Repetition": answers[3] === 'yes' ? 1 : 0,
+        "Priming": answers[4] === 'yes' ? 1 : 0,
+        // ... additional logic for other methods
     };
 
-    scores["Pomodoro"] += answers[0] === 'yes' ? 1 : 0;
-    scores["321"] += answers[1] === 'yes' ? 1 : 0;
-    scores["Spaced Repetition"] += answers[2] === 'yes' ? 1 : 0;
-    scores["Feynman"] += answers[3] === 'yes' ? 1 : 0;
-    scores["Priming"] += answers[4] === 'yes' ? 1 : 0;
-
     let maxScore = 0;
-    let recommendedMethod = "";
+    let recommendedMethod = "Unsure";
 
     for (const method in scores) {
         if (scores[method] > maxScore) {
@@ -89,3 +81,5 @@ function calculateStudyMethod(answers) {
 
     return recommendedMethod;
 }
+
+export default Assessment;

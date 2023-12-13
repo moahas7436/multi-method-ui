@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css'; // Make sure to create a corresponding CSS file
+import { Link, useNavigate } from 'react-router-dom';
+import './Home.css';
 
-export class Home extends Component {
+export const Home = () => {
+    const navigate = useNavigate();
 
-    continueSession = () => {
-        console.log("Continuing session..."); 
+    const continueSession = () => {
+        console.log("Continuing session...");
+        navigate('/studysession'); // Navigate to StudySession page
+        // In a real app, fetch the last session's data and resume it
     };
 
-    render() {
-        return (
-            <div className="home-container">
-                <h1>Welcome to the Multi-Method Study Assistant!</h1>
-                <button className="continue-session-btn" onClick={this.continueSession}>
-                    Continue Your Session
-                </button>
-                <p>Your personalized study hub.</p>
-                <div className="dashboard">
-                    <Link to="/assessment" className="dashboard-link">Take Assessment</Link>
-                    <Link to="/study-methods" className="dashboard-link">View Study Methods</Link>
-                    <Link to="/session-tracker" className="dashboard-link">Track Your Sessions</Link>
-                    <Link to="/profile" className="dashboard-link">Your Profile</Link>
-                </div>
+    return (
+        <div className="home-container">
+            <h1>Welcome to the Multi-Method Study Assistant!</h1>
+            <button className="continue-session-btn" onClick={continueSession}>
+                Continue Your Session
+            </button>
+            <p>Your personalized study hub.</p>
+            <div className="dashboard">
+                <Link to="/assessment" className="dashboard-link">Take Assessment</Link>
+                <Link to="/study-methods" className="dashboard-link">View Study Methods</Link>
+                <Link to="/sessionhistory" className="dashboard-link">Your Study Sessions</Link>
+                <Link to="/profile" className="dashboard-link">Your Profile</Link>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Home;
