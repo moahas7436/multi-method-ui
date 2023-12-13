@@ -7,6 +7,11 @@
     background-color: #1a1a1a; /* Dark background */
     font-family: 'Comic Neue', cursive; /* Comic-like font */
 }
+.login-container h1 {
+    color: #007bff; /* Bright blue */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #000000; /* Black text shadow for contrast */
+}
 
 .login-section,
 .get-started-section {

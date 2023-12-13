@@ -12,18 +12,54 @@ export const Login = () => {
         navigate('/register');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password);
-        // Additional logic for handleSubmit
+
+        // Create an object with the user's email and password
+        const userData = {
+            email: email,
+            password: password
+        };
+
+        try {
+            // Send a POST request to your login endpoint
+            const response = await fetch('/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            if (response.ok) {
+                // Login was successful, you can handle the response here
+                const data = await response.json();
+                console.log('Login successful', data);
+
+                // Store the JWT token in local storage or cookies for subsequent authenticated requests
+                localStorage.setItem('token', data.token);
+
+                // Redirect to another page upon successful login
+                navigate('/home'); // Replace '/dashboard' with your desired destination
+            } else {
+                // Login failed, handle the error
+                console.error('Login failed');
+                // You can display an error message to the user here.
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle network errors or other unexpected issues here.
+        }
     };
+
 
     return (
         <div className="login-container">
             <div className="navigation-bar">
                 {/* Navigation Bar Content */}
             </div>
-            
+            <h1>Welcome to the Multi-Method Study Assistant!</h1>
+
             <div className="login-section">
                 <h2>Log In</h2>
                 <form className="login-form" onSubmit={handleSubmit}>

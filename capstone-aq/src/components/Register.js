@@ -5,9 +5,12 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import './Register.css';
+import { useNavigate } from "react-router-dom";
+
 
 export const Register = () => {
     const [validated, setValidated] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         console.log('inside handle suibmit')
@@ -60,6 +63,8 @@ export const Register = () => {
           console.error('Error:', error);
           // Handle network errors or other unexpected issues here.
         }
+        navigate('/home');
+
       };
       
 

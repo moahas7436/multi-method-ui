@@ -18,10 +18,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavigationBar />
+        {window.location.pathname !== '/' && window.location.pathname !== '/register' && <NavigationBar />}
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/study-methods" element={<StudyMethods />} />
             <Route path="/assessment" element={<Assessment />} />
