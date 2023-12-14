@@ -106,7 +106,7 @@ export const StudySession = ({userId}) => {
     };
 
     return (
-        state.method === "Pomodoro Technique" ? <Pomodoro /> : <ThreeTwoOne/>
+        state.method === "Pomodoro Technique" ? <Pomodoro userId={userId} /> : <ThreeTwoOne userId={userId}/>
     );
         // <div className="study-session-container">
         //       <h2>Study Session: {state?.method || "General Study"}</h2>

@@ -143,6 +143,8 @@ export const ThreeTwoOne = ({ userId }) => {
                 placeholder="Take notes here..."
             />
             <p>Phase: {phase}</p>
+            <button onClick={handleEndSession}>End Session</button>
+
         </div>
     );
 };

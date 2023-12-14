@@ -6,25 +6,22 @@ const bcrypt = require('bcrypt'); // For password hashing
 const jwt = require('jsonwebtoken'); // For generating JWT tokens
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
+const { Client } = require('pg');
 
 
 // Initialize Express app
 const app = express();
 
-// Use CORS and Express JSON middleware
 app.use(cors());
-app.use(express.json()); // This lets us send JSON to the server
+app.use(express.json()); 
 
-// Create a new pool using the connection string from the .env file
-const pool = new Pool({
-  connectionString: 'postgres://postgres:Mh@129901@localhost:5432/master',
-  password: 'Mh@129901', // Make sure it's enclosed in quotes,
-  user: 'postgres'
 
-  // If you're using SSL, you'll need to add the following (Heroku requires this, for example)
-  // ssl: {
-  //   rejectUnauthorized: false
-  // }
+const client = new Client({
+  user: 'user',
+  host: 'http://3.87.51.86/',
+  database: 'postgres',
+  password: 'password',
+  port: 5432, // PostgreSQL default port
 });
 
 // Basic route for testing if the server is running
@@ -40,11 +37,11 @@ app.post('/api/users/register', async (req, res) => {
   console.log("inside register")
   try {
     const { username, email, password, first_name, last_name } = req.body;
-    const saltRounds = 10; // You can adjust the number of salt rounds as needed
+    const saltRounds = 10; 
     const password_hash = await bcrypt.hash(password, saltRounds);
     // Add user to the database
     // Use parameterized queries to prevent SQL injection
-    const newUser = await pool.query(
+    const newUser = await client.query(
       'INSERT INTO public.users (username, email, password_hash, first_name, last_name, date_joined) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
       [username, email, password_hash, first_name, last_name, date_joined]
     );
@@ -62,7 +59,7 @@ app.post('/api/users/login', async (req, res) => {
 
     // Fetch user data from the database based on the provided email
     const query = 'SELECT * FROM users WHERE email = $1';
-    const result = await pool.query(query, [email]);
+    const result = await client.query(query, [email]);
 
     // Check if a user with the provided email exists
     if (result.rows.length === 0) {
@@ -109,7 +106,7 @@ app.post('/api/save-session', async (req, res) => {
 
     const values = [method, userId, methodId, startTime, endTime, duration, notes, feedback];
 
-    const result = await pool.query(query, values);
+    const result = await client.query(query, values);
 
     res.status(201).json({ session_id: result.rows[0].session_id });
 } catch (error) {
@@ -123,9 +120,9 @@ app.get('/api/get-session-history', async (req, res) => {
   const userId = req.query.userId;
 
   try {
-      // Fetch session history data for the specified user from your database
+      // Fetch session history data 
       const query = 'SELECT method, session_id, user_id, method_id, start_time, end_time, duration, notes, feedback FROM study_sessions WHERE user_id = $1;';
-      const result = await pool.query(query, [userId]);
+      const result = await client.query(query, [userId]);
 
       // Send the fetched session history data as JSON response
       res.json(result.rows);
