@@ -8,27 +8,32 @@ export const StudyMethods = () => {
         {
             id: 1,
             name: 'Pomodoro Technique',
-            description: '25-minute focused work sessions with 5-minute breaks.'
+            description: '25-minute focused work sessions with 5-minute breaks.',
+            details: 'n/a'
         },
         {
             id: 2,
             name: '321 Method',
-            description: '3 hours of studying, 2 hours of break, and 1 hour of review.'
+            description: '3 hours of studying, 2 hours of break, and 1 hour of review.',
+            details: 'n/a'
         },
         {
             id: 3,
             name: 'Feynman Technique',
-            description: 'Learning by teaching and simplifying concepts.'
+            description: 'Learning by teaching and simplifying concepts.',
+            details: 'n/a'
         },
         {
             id: 4,
             name: 'Spaced Repetition',
-            description: 'Spreading out study sessions over time to improve long-term retention.'
+            description: 'Spreading out study sessions over time to improve long-term retention.',
+            details: 'n/a'
         },
         {
             id: 5,
             name: 'Priming',
-            description: 'Preparing the brain for learning with brief exposure to key concepts.'
+            description: 'Preparing the brain for learning with brief exposure to key concepts.',
+            details: 'n/a'
         }
     ]);
 

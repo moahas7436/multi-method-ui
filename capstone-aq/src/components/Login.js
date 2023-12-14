@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
 
-export const Login = ({setActiveTab}) => {
+export const Login = ({ setActiveTab, setUserId }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const Login = ({setActiveTab}) => {
     useEffect(() => {
         // Reset the activeTab to 'register' when the component renders
         setActiveTab('/');
-      }, []);
+    }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -43,7 +43,8 @@ export const Login = ({setActiveTab}) => {
 
                 // Store the JWT token in local storage or cookies for subsequent authenticated requests
                 localStorage.setItem('token', data.token);
-
+                // Set the userId in the state
+                setUserId(data.user_id);
                 // Redirect to another page upon successful login
                 navigate('/home'); // Replace '/dashboard' with your desired destination
             } else {
@@ -95,7 +96,7 @@ export const Login = ({setActiveTab}) => {
                     <Button variant="primary" type="submit">Log In</Button>
                 </form>
             </div>
-            
+
             <div className="get-started-section">
                 <h3>Get Started</h3>
                 <p>Join us now to enhance your study methods!</p>

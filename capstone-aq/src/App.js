@@ -18,9 +18,15 @@ class App extends React.Component {
 super(props)
     this.state = {
       activeTab: '/',
+      userId: null,
     }
   }
 
+  setUserId = (id) => {
+    this.setState({ userId: id }, () => {
+      console.log(this.state.userId); // This will log the updated state value
+    });
+  }
   setActiveTab = (tab) => {
   this.setState({ activeTab: tab }, () => {
     console.log(this.state.activeTab); // This will log the updated state value
@@ -36,7 +42,7 @@ super(props)
     <NavigationBar active={this.state.activeTab} />)}          <Routes>
             <Route
               path="/"
-              element={<Login setActiveTab={this.setActiveTab} />} // Pass setActiveTab as a prop
+              element={<Login setActiveTab={this.setActiveTab} setUserId={this.setUserId} />} // Pass setActiveTab as a prop
             />
             <Route
               path="/home"
@@ -49,8 +55,8 @@ super(props)
             />
             <Route path="/assessment" element={<Assessment />} />
             <Route path="/results" element={<Results />} />
-            <Route path="/studysession" element={<StudySession />} />
-            <Route path="/sessionhistory" element={<SessionHistory />} />
+            <Route path="/studysession" element={<StudySession userId={this.state.userId}/>} />
+            <Route path="/sessionhistory" element={<SessionHistory userId={this.state.userId} />} />
             <Route path="/profile" element={<Profile setActiveTab={this.setActiveTab} />} />
             {/* New route for the profile page */}
             {/* <Route path="*" element={<NotFoundPage />} /> Optional 404 page */}

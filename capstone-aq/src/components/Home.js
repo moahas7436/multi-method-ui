@@ -7,11 +7,7 @@ import { useState, useEffect } from 'react';
 export const Home = ({setActiveTab}) => {
     const navigate = useNavigate();
 
-    const continueSession = () => {
-        console.log("Continuing session...");
-        navigate('/studysession'); // Navigate to StudySession page
-        // In a real app, fetch the last session's data and resume it
-    };
+  
     useEffect(() => {
         // Reset the activeTab to 'register' when the component renders
         setActiveTab('/home');
@@ -23,13 +19,13 @@ export const Home = ({setActiveTab}) => {
          
        
             <div className="dashboard">
-            <button className="continue-session-btn" onClick={continueSession}>
-                Continue Your Session
-            </button>
+         
             <Link to="/sessionhistory" className="dashboard-link">Your Study Sessions</Link>
+            <Link to="/study-methods" className="dashboard-link">New Study Session</Link>
+
 <div style={{padding: "50px"}}></div>
                 <Link to="/assessment" className="dashboard-link-two">Take Assessment Again</Link>
-                <Link to="/study-methods" className="dashboard-link-two">View Study Methods</Link>
+                {/* <Link to="/study-methods" className="dashboard-link-two">View Study Methods</Link> */}
             </div>
         </div>
     );

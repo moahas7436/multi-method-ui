@@ -82,22 +82,60 @@ app.post('/api/users/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Generate a JWT token for the authenticated user
-    const token = jwt.sign({ userId: user.id }, 'your_secret_key', {
-      expiresIn: '1h', // Token expiration time
-    });
+ // Generate a JWT token for the authenticated user
+ const token = jwt.sign({ userId: user.user_id }, 'your_secret_key', {
+  expiresIn: '1h', // Token expiration time
+});
 
-    res.json({ token });
+// Include user_id in the response
+res.json({ token, user_id: user.user_id });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Define other routes here...
+// Add session data
 
+app.post('/api/save-session', async (req, res) => {
+  try {
+    const { method, userId, methodId, startTime, endTime, duration, notes, feedback } = req.body;
+
+    // Insert the study session data into the study_sessions table
+    const query = `
+        INSERT INTO study_sessions (method, user_id, method_id, start_time, end_time, duration, notes, feedback)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING session_id`;
+
+    const values = [method, userId, methodId, startTime, endTime, duration, notes, feedback];
+
+    const result = await pool.query(query, values);
+
+    res.status(201).json({ session_id: result.rows[0].session_id });
+} catch (error) {
+    console.error('Error saving study session:', error);
+    res.status(500).json({ error: 'Internal server error' });
+}
+});
+// Get session history
+
+app.get('/api/get-session-history', async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+      // Fetch session history data for the specified user from your database
+      const query = 'SELECT method, session_id, user_id, method_id, start_time, end_time, duration, notes, feedback FROM study_sessions WHERE user_id = $1;';
+      const result = await pool.query(query, [userId]);
+
+      // Send the fetched session history data as JSON response
+      res.json(result.rows);
+  } catch (error) {
+      console.error('Error fetching session history:', error);
+      res.status(500).json({ error: 'Server error' });
+  }
+});
 // Set the port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Start the server
 app.listen(PORT, () => {
