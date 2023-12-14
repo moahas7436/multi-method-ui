@@ -34,14 +34,14 @@ app.get('/', (req, res) => {
 app.post('/api/users/register', async (req, res) => {
   console.log("inside register")
   try {
-    const { username, email, password, first_name, last_name } = req.body;
+    const { user_id, email, password, first_name, last_name } = req.body;
     const saltRounds = 10; // You can adjust the number of salt rounds as needed
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     // Add user to the database
     // Use parameterized queries to prevent SQL injection
     const newUser = await pool.query(
-      'INSERT INTO public.users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [username, email, hashedPassword, first_name, last_name]
+      'INSERT INTO public.users (user_id, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [user_id, email, hashedPassword, first_name, last_name]
     );
     res.json(newUser.rows[0]);
   } catch (error) {

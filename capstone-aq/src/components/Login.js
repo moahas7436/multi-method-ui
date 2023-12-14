@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login = ({setActiveTab}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleRegisterNavigate = () => {
+        setActiveTab('/register');
+
         navigate('/register');
     };
-
+    useEffect(() => {
+        // Reset the activeTab to 'register' when the component renders
+        setActiveTab('/');
+      }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -8,9 +8,14 @@ import './Register.css';
 import { useNavigate } from "react-router-dom";
 
 
-export const Register = () => {
+export const Register = ({setActiveTab}) => {
     const [validated, setValidated] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        // Reset the activeTab to 'register' when the component renders
+        setActiveTab('/register');
+      }, []);
 
     const handleSubmit = async (event) => {
         console.log('inside handle suibmit')
@@ -63,6 +68,7 @@ export const Register = () => {
           console.error('Error:', error);
           // Handle network errors or other unexpected issues here.
         }
+        setActiveTab('/home')
         navigate('/home');
 
       };
@@ -103,7 +109,7 @@ export const Register = () => {
                                 placeholder="Username"
                                 aria-describedby="inputGroupPrepend"
                                 required
-                                name="username"
+                                name="user_id"
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please choose a username.

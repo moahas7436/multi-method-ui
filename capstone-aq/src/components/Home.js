@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
+import { useState, useEffect } from 'react';
 
-export const Home = () => {
+
+export const Home = ({setActiveTab}) => {
     const navigate = useNavigate();
 
     const continueSession = () => {
@@ -10,7 +12,10 @@ export const Home = () => {
         navigate('/studysession'); // Navigate to StudySession page
         // In a real app, fetch the last session's data and resume it
     };
-
+    useEffect(() => {
+        // Reset the activeTab to 'register' when the component renders
+        setActiveTab('/home');
+      }, []);
     return (
         <div className="home-container">
             <h1>Welcome to the Multi-Method Study Assistant!</h1>
