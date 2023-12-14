@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './StudySession.css';
+import '../StudySession.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Pomodoro from './studyMethods/Pomodoro';
-import ThreeTwoOne from './studyMethods/ThreeTwoOne';
 
-export const StudySession = ({userId}) => {
+export const Pomodoro = ({userId}) => {
     const { state } = useLocation();
     const navigate = useNavigate();
     const [notes, setNotes] = useState('');
@@ -106,25 +104,23 @@ export const StudySession = ({userId}) => {
     };
 
     return (
-        state.method === "Pomodoro Technique" ? <Pomodoro /> : <ThreeTwoOne/>
+        <div className="study-session-container">
+              <h2>Study Session: {state?.method || "General Study"}</h2>
+            <p>{state?.method && studyMethodDetails[state.method] ? studyMethodDetails[state.method].description : "General study session description."}</p>
+            <div className="timer">
+                {formatTime(timer)}
+                <button onClick={toggleTimer}>
+                    {isTimerRunning ? 'Pause' : 'Start'}
+                </button>
+            </div>
+            <textarea
+                value={notes}
+                onChange={e => setNotes(e.target.value)}
+                placeholder="Take notes here..."
+            />
+            <button onClick={handleEndSession}>End Session</button>
+        </div>
     );
-        // <div className="study-session-container">
-        //       <h2>Study Session: {state?.method || "General Study"}</h2>
-        //     <p>{state?.method && studyMethodDetails[state.method] ? studyMethodDetails[state.method].description : "General study session description."}</p>
-        //     <div className="timer">
-        //         {formatTime(timer)}
-        //         <button onClick={toggleTimer}>
-        //             {isTimerRunning ? 'Pause' : 'Start'}
-        //         </button>
-        //     </div>
-        //     <textarea
-        //         value={notes}
-        //         onChange={e => setNotes(e.target.value)}
-        //         placeholder="Take notes here..."
-        //     />
-        //     <button onClick={handleEndSession}>End Session</button>
-        // </div>
-    
 };
 
-export default StudySession;
+export default Pomodoro;
