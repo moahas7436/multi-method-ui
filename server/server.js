@@ -18,7 +18,7 @@ app.use(express.json());
 
 const client = new Client({
   user: 'user',
-  host: 'http://3.87.51.86/',
+  host: 'database-2.cgrhbmmrnxxj.us-east-1.rds.amazonaws.com',
   database: 'postgres',
   password: 'password',
   port: 5432, // PostgreSQL default port
