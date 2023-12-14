@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profile.css';
 
-export const Profile = () => {
+export const Profile = ({setActiveTab}) => {
+    useEffect(() => {
+        // Reset the activeTab to 'register' when the component renders
+        setActiveTab('/profile');
+      }, []);
     // Sample state for user's profile data
     const [profile, setProfile] = useState({
         name: "John Doe",

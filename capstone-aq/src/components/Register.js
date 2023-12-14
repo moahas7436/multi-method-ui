@@ -68,8 +68,8 @@ export const Register = ({setActiveTab}) => {
           console.error('Error:', error);
           // Handle network errors or other unexpected issues here.
         }
-        setActiveTab('/home')
-        navigate('/home');
+        setActiveTab('/assessment')
+        navigate('/assessment');
 
       };
       
@@ -109,7 +109,7 @@ export const Register = ({setActiveTab}) => {
                                 placeholder="Username"
                                 aria-describedby="inputGroupPrepend"
                                 required
-                                name="user_id"
+                                name="username"
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please choose a username.

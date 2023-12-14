@@ -19,15 +19,17 @@ export const Home = ({setActiveTab}) => {
     return (
         <div className="home-container">
             <h1>Welcome to the Multi-Method Study Assistant!</h1>
+                 <p>Your personalized study hub.</p>
+         
+       
+            <div className="dashboard">
             <button className="continue-session-btn" onClick={continueSession}>
                 Continue Your Session
             </button>
-            <p>Your personalized study hub.</p>
-            <div className="dashboard">
-                <Link to="/assessment" className="dashboard-link">Take Assessment</Link>
-                <Link to="/study-methods" className="dashboard-link">View Study Methods</Link>
-                <Link to="/sessionhistory" className="dashboard-link">Your Study Sessions</Link>
-                <Link to="/profile" className="dashboard-link">Your Profile</Link>
+            <Link to="/sessionhistory" className="dashboard-link">Your Study Sessions</Link>
+<div style={{padding: "50px"}}></div>
+                <Link to="/assessment" className="dashboard-link-two">Take Assessment Again</Link>
+                <Link to="/study-methods" className="dashboard-link-two">View Study Methods</Link>
             </div>
         </div>
     );

@@ -51,7 +51,7 @@ super(props)
             <Route path="/results" element={<Results />} />
             <Route path="/studysession" element={<StudySession />} />
             <Route path="/sessionhistory" element={<SessionHistory />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile setActiveTab={this.setActiveTab} />} />
             {/* New route for the profile page */}
             {/* <Route path="*" element={<NotFoundPage />} /> Optional 404 page */}
           </Routes>

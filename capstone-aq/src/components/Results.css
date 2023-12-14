@@ -28,6 +28,7 @@
 
 .start-session-button {
     padding: 10px 20px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 5px;
     background-color: #007bff; /* Bright blue */

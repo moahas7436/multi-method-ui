@@ -13,10 +13,10 @@ const NavigationBar = () => {
     <nav className="navbar">
      
         <ul className="nav-links">
-          <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+          <li><Link to="/home" onClick={toggleMenu}>Home</Link></li>
           {/* <li><Link to="/login" onClick={toggleMenu}>Login</Link></li>
           <li><Link to="/register" onClick={toggleMenu}>Register</Link></li> */}
-          {/* <li><Link to="/study-methods" onClick={toggleMenu}>Study Methods</Link></li> */}
+          <li><Link to="/study-methods" onClick={toggleMenu}>Study Methods</Link></li>
           <li><Link to="/profile" onClick={toggleMenu}>My Profile </Link></li>
         </ul>
        </nav>

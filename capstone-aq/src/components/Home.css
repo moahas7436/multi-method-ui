@@ -45,7 +45,17 @@
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
-
+.dashboard-link-two {
+    background: white; /* Bright blue */
+    color: black; /* White text */
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 .dashboard-link:hover {
     background-color: #0056b3; /* Darker shade of blue on hover */
 }

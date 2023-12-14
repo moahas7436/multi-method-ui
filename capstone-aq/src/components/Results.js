@@ -22,7 +22,10 @@ const Results = () => {
         navigate('/studysession', { state: { method: recommendedMethod } });
     };
     
-
+    const handleOtherMethods = () => {
+        navigate('/study-methods');
+    };
+    
     return (
         <div className="results-container">
             <h2>Your Recommended Study Method</h2>
@@ -32,6 +35,8 @@ const Results = () => {
                 {/* Additional details about the method or next steps can be added here */}
             </div>
             <button onClick={handleStartSession} className="start-session-button">Start a Session</button>
+            <button onClick={handleOtherMethods} className="start-session-button">View Other Methods</button>
+
         </div>
     );
 };

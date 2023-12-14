@@ -5,6 +5,8 @@ const { Pool } = require('pg'); // PostgreSQL client for Node.js
 const bcrypt = require('bcrypt'); // For password hashing
 const jwt = require('jsonwebtoken'); // For generating JWT tokens
 const bodyParser = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
+
 
 // Initialize Express app
 const app = express();
@@ -32,16 +34,19 @@ app.get('/', (req, res) => {
 
 // Register user route
 app.post('/api/users/register', async (req, res) => {
+  const date_joined = new Date(); // Get the current date and time
+
+
   console.log("inside register")
   try {
-    const { user_id, email, password, first_name, last_name } = req.body;
+    const { username, email, password, first_name, last_name } = req.body;
     const saltRounds = 10; // You can adjust the number of salt rounds as needed
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const password_hash = await bcrypt.hash(password, saltRounds);
     // Add user to the database
     // Use parameterized queries to prevent SQL injection
     const newUser = await pool.query(
-      'INSERT INTO public.users (user_id, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [user_id, email, hashedPassword, first_name, last_name]
+      'INSERT INTO public.users (username, email, password_hash, first_name, last_name, date_joined) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [username, email, password_hash, first_name, last_name, date_joined]
     );
     res.json(newUser.rows[0]);
   } catch (error) {
@@ -70,8 +75,8 @@ app.post('/api/users/login', async (req, res) => {
     console.log(user)
     console.log(user.password)
     console.log(password)
-    console.log(await bcrypt.compare(password, user.password))
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    console.log(await bcrypt.compare(password, user.password_hash))
+    const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Invalid credentials' });
