@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../StudySession.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+
 export const Priming = () => {
     const userId = Cookies.get('user_id');
 
@@ -12,27 +13,10 @@ export const Priming = () => {
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
     const studyMethodDetails = {
-        "Pomodoro Technique": {
-            sessionTime: 1500, // 25 minutes
-            description: "The Pomodoro Technique involves breaking work into intervals, traditionally 25 minutes in length, separated by short breaks."
-        },
-        '321 Method': {
-            sessionTime: 3600, // 60 minutes
-            description: "The 321 method involves 3 hours of studying, 2 hours of break, and 1 hour of review."
-        },
-        'Feynman Technique': {
-            sessionTime: 1800, // 30 minutes
-            description: "The Feynman Technique involves teaching a concept you are trying to learn to someone else."
-        },
-        'Spaced Repetition': {
-            sessionTime: 1200, // 20 minutes
-            description: "Spaced Repetition involves spreading out study sessions over time to improve long-term retention of material."
-        },
         "Priming": {
             sessionTime: 2400, // 40 minutes
             description: "Priming involves preparing the brain for learning with a brief preliminary exposure to key concepts."
-        }
-    };
+        }    };
 
     useEffect(() => {
         const methodDetail = state?.method && studyMethodDetails[state.method];
@@ -55,6 +39,7 @@ export const Priming = () => {
         }
         return () => clearInterval(interval);
     }, [isTimerRunning, timer]);
+
     const handleEndSession = async () => {
         const currentDateTime = new Date();
         const startTime = new Date(currentDateTime.getTime() - timer * 1000); // Convert seconds to milliseconds
@@ -68,7 +53,7 @@ export const Priming = () => {
             notes: notes,
             feedback: 'User feedback goes here', // You can include user feedback if applicable
         };
-    
+
         try {
             const response = await fetch('/api/save-session', {
                 method: 'POST',
@@ -77,7 +62,7 @@ export const Priming = () => {
                 },
                 body: JSON.stringify(sessionData),
             });
-    
+
             if (response.status === 201) {
                 const result = await response.json();
                 // Session saved successfully, you can access the session_id from the response
@@ -91,9 +76,7 @@ export const Priming = () => {
             console.error('Error saving study session:', error);
         }
         navigate('/sessionhistory');
-
     };
-
 
     const toggleTimer = () => {
         setIsTimerRunning(!isTimerRunning);
@@ -107,13 +90,21 @@ export const Priming = () => {
 
     return (
         <div className="study-session-container">
-              <h2>Study Session: Priming</h2>
-            <p>{state?.method && studyMethodDetails[state.method] ? studyMethodDetails[state.method].description : "General study session description."}</p>
+            <h2>Study Session: Priming</h2>
+            <p>
+                {state?.method && studyMethodDetails[state.method]
+                    ? studyMethodDetails[state.method].description
+                    : 'General study session description.'}
+            </p>
             <div className="timer">
                 {formatTime(timer)}
                 <button onClick={toggleTimer}>
                     {isTimerRunning ? 'Pause' : 'Start'}
                 </button>
+            </div>
+            <div>
+                <p>During this Priming session, focus on briefly exposing yourself to key concepts related to your study material.</p>
+                <p>Consider reviewing important definitions, formulas, or key points that will be central to your upcoming learning sessions.</p>
             </div>
             <textarea
                 value={notes}
