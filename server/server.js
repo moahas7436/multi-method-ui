@@ -24,8 +24,9 @@ const client = new Client({
   port: 5432, // PostgreSQL default port
   ssl: {
     rejectUnauthorized: false
-}
-// const pool = new client({
+  }
+});
+// const pool = new Pool({
 //   connectionString: 'postgres://postgres:Mh@129901@localhost:5432/master',
 //   password: 'Mh@129901', // Make sure it's enclosed in quotes,
 //   user: 'postgres',
