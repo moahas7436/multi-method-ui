@@ -23,10 +23,18 @@ const client = new Client({
   password: 'password',
   port: 5432, // PostgreSQL default port
 });
+client.connect(function(err) {
+  if (err) {
+    console.log('Database connection failed: ' + err.stack);
+    return;
+  }
 
+  console.log('Connected to database.');
+});
 // Basic route for testing if the server is running
 app.get('/', (req, res) => {
   res.send('Hello, your server is up and running!');
+
 });
 
 // Register user route
@@ -36,6 +44,7 @@ app.post('/api/users/register', async (req, res) => {
 
   console.log("inside register")
   try {
+    console.log("Inside try block")
     const { username, email, password, first_name, last_name } = req.body;
     const saltRounds = 10; 
     const password_hash = await bcrypt.hash(password, saltRounds);
@@ -45,6 +54,7 @@ app.post('/api/users/register', async (req, res) => {
       'INSERT INTO public.users (username, email, password_hash, first_name, last_name, date_joined) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
       [username, email, password_hash, first_name, last_name, date_joined]
     );
+    console.log(newUser.rows[0])
     res.json(newUser.rows[0]);
   } catch (error) {
     console.error(error.message);
