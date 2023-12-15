@@ -22,6 +22,9 @@ const client = new Client({
   database: 'postgres',
   password: 'password',
   port: 5432, // PostgreSQL default port
+  ssl: {
+    rejectUnauthorized: false
+}
 });
 client.connect(function(err) {
   if (err) {
