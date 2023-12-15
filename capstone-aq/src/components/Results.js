@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Results.css';
 import Cookies from 'js-cookie';
@@ -7,6 +8,14 @@ const Results = ( ) => {
 
     const location = useLocation();
     const navigate = useNavigate();
+    useEffect(() => {
+        const existingUserId = Cookies.get('user_id');
+
+        if (!existingUserId) {
+            // Redirect to the login page if userId cookie is not present
+            navigate('/');
+        }
+    }, [navigate]); // Include navigate in the dependency array
     const recommendedMethod = location.state?.recommendedMethod || "Unsure";
 
     const renderResultsMessage = () => {

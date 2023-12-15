@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StudyMethods.css';
 import Cookies from 'js-cookie';
 
 export const StudyMethods = () => {
-    const userId = Cookies.get('user_id');
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const existingUserId = Cookies.get('user_id');
+
+        if (!existingUserId) {
+            // Redirect to the login page if userId cookie is not present
+            navigate('/');
+        }
+    }, [navigate]); // Include navigate in the dependency array
     const [methods, setMethods] = useState([
         {
             id: 1,

@@ -15,7 +15,14 @@ export const StudySession = ({}) => {
     const [notes, setNotes] = useState('');
     const [timer, setTimer] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
+    useEffect(() => {
+        const existingUserId = Cookies.get('user_id');
 
+        if (!existingUserId) {
+            // Redirect to the login page if userId cookie is not present
+            navigate('/');
+        }
+    }, [navigate]); // Include navigate in the dependency array
     const studyMethodDetails = {
         "Pomodoro Technique": {
             sessionTime: 1500, // 25 minutes
@@ -40,13 +47,15 @@ export const StudySession = ({}) => {
     };
 
     useEffect(() => {
+        if (state && state.method) {
+
         const methodDetail = state?.method && studyMethodDetails[state.method];
         if (methodDetail) {
             setTimer(methodDetail.sessionTime);
         } else {
             // Handle the case where method is not found
             setTimer(0); // Set default timer or handle appropriately
-        }
+        }}
     }, [state?.method]);
 
     useEffect(() => {
@@ -109,25 +118,38 @@ export const StudySession = ({}) => {
         const seconds = time % 60;
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
-console.log(state.method)
    
   return (
     <div className="study-session-container">
-      {state.method === 'Pomodoro Technique' ? (
-        <Pomodoro userId={userId} />
-      ) : state.method === '321 Method' ? (
-        <ThreeTwoOne userId={userId} />
-      ) : state.method === 'Feynman Technique' ?
-      <Feynman/> 
-      : state.method === 'Spaced Repetition' ?
-      <SpacedRepetition/> 
-      : state.method === 'Priming' ?
-      <Priming/> 
-      :
-      (
-        <div>Unknown study method: {state.method}</div>
-      )}
-    </div>
+    {state && state.method ? (
+        // Rendering content based on state.method
+        // Example: You can render different components based on the method
+        <>
+            {state.method === 'Pomodoro Technique' ? (
+                // Render Pomodoro component
+                <Pomodoro userId={userId} />
+            ) : state.method === '321 Method' ? (
+                // Render ThreeTwoOne component
+                <ThreeTwoOne userId={userId} />
+            ) : state.method === 'Feynman Technique' ? (
+                // Render Feynman component
+                <Feynman />
+            ) : state.method === 'Spaced Repetition' ? (
+                // Render SpacedRepetition component
+                <SpacedRepetition />
+            ) : state.method === 'Priming' ? (
+                // Render Priming component
+                <Priming />
+            ) : (
+                // Handle unknown study method
+                <div>Unknown study method: {state.method}</div>
+            )}
+        </>
+    ) : (
+        // Handle the case when state or state.method is null
+        <div>No study method selected</div>
+    )}
+</div>
   );
         // <div className="study-session-container">
         //       <h2>Study Session: {state?.method || "General Study"}</h2>

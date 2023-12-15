@@ -16,27 +16,27 @@ app.use(cors());
 app.use(express.json()); 
 
 
-const client = new Client({
-  user: 'postgres',
-  host: 'database-2.cgrhbmmrnxxj.us-east-1.rds.amazonaws.com',
-  database: 'postgres',
-  password: 'password',
-  port: 5432, // PostgreSQL default port
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-// const client = new Pool({
-//   connectionString: 'postgres://postgres:Mh@129901@localhost:5432/master',
-//   password: 'Mh@129901', // Make sure it's enclosed in quotes,
+// const client = new Client({
 //   user: 'postgres',
-
-//   // If you're using SSL, you'll need to add the following (Heroku requires this, for example)
-//   // ssl: {
-//   //   rejectUnauthorized: false
-//   // }
+//   host: 'database-2.cgrhbmmrnxxj.us-east-1.rds.amazonaws.com',
+//   database: 'postgres',
+//   password: 'password',
 //   port: 5432, // PostgreSQL default port
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
 // });
+const client = new Pool({
+  connectionString: 'postgres://postgres:Mh@129901@localhost:5432/master',
+  password: 'Mh@129901', // Make sure it's enclosed in quotes,
+  user: 'postgres',
+
+  // If you're using SSL, you'll need to add the following (Heroku requires this, for example)
+  // ssl: {
+  //   rejectUnauthorized: false
+  // }
+  port: 5432, // PostgreSQL default port
+});
 
 client.connect(function(err) {
   if (err) {

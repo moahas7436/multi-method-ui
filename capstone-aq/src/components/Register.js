@@ -6,16 +6,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import './Register.css';
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 
-export const Register = ({setActiveTab}) => {
+export const Register = ({ setActiveTab }) => {
+
     const [validated, setValidated] = useState(false);
     const navigate = useNavigate()
 
     useEffect(() => {
         // Reset the activeTab to 'register' when the component renders
         setActiveTab('/register');
-      }, []);
+    }, []);
 
     const handleSubmit = async (event) => {
         console.log('inside handle suibmit')
@@ -24,55 +26,58 @@ export const Register = ({setActiveTab}) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             console.log("not valid")
-          event.stopPropagation();
-          return;
+            event.stopPropagation();
+            return;
         }
-      
+
         setValidated(true);
-      
+
         // Create a new FormData object from the form
         const formData = new FormData(form);
         console.log(formData)
-      
+
         // Convert FormData to an object
         const formDataObject = {};
         formData.forEach((value, key) => {
             console.log(key)
             console.log(value)
-          formDataObject[key] = value;
+            formDataObject[key] = value;
         });
-      
+
         console.log(formDataObject); // Log the formDataObject
-      
+
         // Send a POST request to your server
         try {
             console.log(JSON.stringify(formDataObject))
-          const response = await fetch('/api/users/register', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formDataObject),
-          });
-      
-          if (response.ok) {
-            // Registration was successful, you can redirect or show a success message.
-            console.log('Registration successful');
-            // You can add code to redirect the user or display a success message here.
-          } else {
-            // Registration failed, handle the error.
-            console.error('Registration failed');
-            // You can display an error message to the user here.
-          }
+            const response = await fetch('/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formDataObject),
+            });
+
+            if (response.ok) {
+                // Registration was successful, you can redirect or show a success message.
+                console.log('Registration successful');
+                const responseData = await response.json();
+                const userId = responseData.user_id;
+                Cookies.set('user_id', userId);
+                // You can add code to redirect the user or display a success message here.
+            } else {
+                // Registration failed, handle the error.
+                console.error('Registration failed');
+                // You can display an error message to the user here.
+            }
         } catch (error) {
-          console.error('Error:', error);
-          // Handle network errors or other unexpected issues here.
+            console.error('Error:', error);
+            // Handle network errors or other unexpected issues here.
         }
         setActiveTab('/assessment')
         navigate('/assessment');
 
-      };
-      
+    };
+
 
     return (
         <div className="register-container">
