@@ -60,9 +60,9 @@ const Assessment = () => {
 
 function calculateStudyMethod(answers) {
     const scores = {
-        "Pomodoro": answers[0] === 'yes' ? 1 : 0,
-        "321": answers[1] === 'yes' ? 1 : 0,
-        "Feynman": answers[2] === 'yes' ? 1 : 0,
+        "Pomodoro Technique": answers[0] === 'yes' ? 1 : 0,
+        "321 Method": answers[1] === 'yes' ? 1 : 0,
+        "Feynman Technique": answers[2] === 'yes' ? 1 : 0,
         "Spaced Repetition": answers[3] === 'yes' ? 1 : 0,
         "Priming": answers[4] === 'yes' ? 1 : 0,
         // ... additional logic for other methods

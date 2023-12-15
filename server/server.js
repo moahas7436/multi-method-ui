@@ -26,7 +26,7 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-// const pool = new Pool({
+// const client = new Pool({
 //   connectionString: 'postgres://postgres:Mh@129901@localhost:5432/master',
 //   password: 'Mh@129901', // Make sure it's enclosed in quotes,
 //   user: 'postgres',
@@ -52,14 +52,36 @@ app.get('/', (req, res) => {
 
 });
 
+// Get user profile
+
+app.get('/api/get-profile', async (req, res) => {
+  console.log('Request received for get-profile:', req.query.userId);
+
+  const userId = req.query.userId;
+
+  try {
+    const result = await client.query('SELECT * FROM users WHERE user_id = $1', [userId]);
+    const userProfile = result.rows[0];
+
+    if (userProfile) {
+      res.json(userProfile);
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // Register user route
 app.post('/api/users/register', async (req, res) => {
   const date_joined = new Date(); // Get the current date and time
 
 
-  console.log("inside register")
+  // console.log("inside register")
   try {
-    console.log("Inside try block")
+    // console.log("Inside try block")
     const { username, email, password, first_name, last_name } = req.body;
     const saltRounds = 10; 
     const password_hash = await bcrypt.hash(password, saltRounds);
@@ -131,7 +153,6 @@ app.post('/api/save-session', async (req, res) => {
     const values = [method, userId, methodId, startTime, endTime, duration, notes, feedback];
 
     const result = await client.query(query, values);
-    console.log(result)
     res.status(201).json({ session_id: result.rows[0].session_id });
 } catch (error) {
     console.error('Error saving study session:', error);

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StudyMethods.css';
+import Cookies from 'js-cookie';
 
-export const StudyMethods = ({ userId }) => {
+export const StudyMethods = () => {
+    const userId = Cookies.get('user_id');
+
     const navigate = useNavigate();
     const [methods, setMethods] = useState([
         {
@@ -58,13 +61,13 @@ export const StudyMethods = ({ userId }) => {
             <ul>
                 {methods.map(method => (
                     <li key={method.id} className="method-item">
-                        <h2 onClick={() => toggleDetails(method.id)}>{method.name}</h2>
-                        {method.showDetails && (
+                        <h2>{method.name}</h2>
+                       
                             <div>
                                 <p>{method.description}</p>
-                                <button onClick={() => startSession(method)}>Wanna start this session</button>
+                                <button onClick={() => startSession(method)}>Begin</button>
                             </div>
-                        )}
+                        
                     </li>
                 ))}
             </ul>

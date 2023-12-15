@@ -1,40 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import Cookies from 'js-cookie';
-export const Profile = ({setActiveTab}) => {
+// ... (previous imports)
+
+export const Profile = ({ setActiveTab }) => {
     const userId = Cookies.get('user_id');
-
-    useEffect(() => {
-        // Reset the activeTab to 'register' when the component renders
-        setActiveTab('/profile');
-      }, []);
-    // Sample state for user's profile data
     const [profile, setProfile] = useState({
-        name: "John Doe",
-        email: "johndoe@example.com",
-        preferredStudyMethod: "Pomodoro",
-        studyProgress: {
-            sessionsCompleted: 10,
-            hoursStudied: 25
-        }
+      user_id: '',
+      username: '',
+      email: '',
+      password_hash: '',
+      first_name: '',
+      last_name: '',
+      date_joined: '',
     });
-
-    // Add more functionalities as needed, like editing profile, etc.
-
+  
+    useEffect(() => {
+      // Reset the activeTab to 'register' when the component renders
+      setActiveTab('/profile');
+  
+      // Fetch user profile from the backend
+      const fetchUserProfile = async () => {
+        try {
+          const response = await fetch(`/api/get-profile?userId=${userId}`);
+          if (response.ok) {
+            const data = await response.json();
+            setProfile(data); // Update state with fetched profile data
+          } else {
+            console.error('Failed to fetch user profile:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+        }
+      };
+  
+      if (userId) {
+        fetchUserProfile();
+      }
+    }, [userId, setActiveTab]);
+  
     return (
-        <div className="profile-container">
-            <h2>User Profile</h2>
-            <div className="profile-details">
-                <p><strong>Name:</strong> {profile.name}</p>
-                <p><strong>Email:</strong> {profile.email}</p>
-                <p><strong>Preferred Study Method:</strong> {profile.preferredStudyMethod}</p>
-                <p><strong>Study Sessions Completed:</strong> {profile.studyProgress.sessionsCompleted}</p>
-                <p><strong>Total Hours Studied:</strong> {profile.studyProgress.hoursStudied}</p>
-                {/* Add more details as needed */}
-            </div>
-            {/* Add functionality for editing profile details */}
-        </div>
-    );
-};
+      <div className="profile-container">
+        <h2>User Profile</h2>
+        <div className="profile-details">
+    
+          <p>
+            <strong>Username:</strong> {profile.username}
+          </p>
+          <p>
+            <strong>Email:</strong> {profile.email}
+          </p>
 
-export default Profile;
+          <p>
+            <strong>First Name:</strong> {profile.first_name}
+          </p>
+          <p>
+            <strong>Last Name:</strong> {profile.last_name}
+          </p>
+          <p>
+            <strong>Date Joined:</strong> {profile.date_joined}
+          </p>
+        </div>
+        {/* Add functionality for editing profile details */}
+      </div>
+    );
+  };
+  
+  export default Profile;
+  

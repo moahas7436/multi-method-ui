@@ -109,7 +109,7 @@ export const StudySession = ({}) => {
         const seconds = time % 60;
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
-
+console.log(state.method)
    
   return (
     <div className="study-session-container">
