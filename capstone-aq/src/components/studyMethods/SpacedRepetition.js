@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../StudySession.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export const Pomodoro = ({userId}) => {
+export const SpacedRepetition = ({userId}) => {
     const { state } = useLocation();
     const navigate = useNavigate();
     const [notes, setNotes] = useState('');
@@ -105,7 +105,8 @@ export const Pomodoro = ({userId}) => {
 
     return (
         <div className="study-session-container">
-              <h2>Study Session: Pomodoro Technique</h2>
+              <h2>Study Session: Spaced Repetition</h2>
+            <p>{state?.method && studyMethodDetails[state.method] ? studyMethodDetails[state.method].description : "General study session description."}</p>
             <div className="timer">
                 {formatTime(timer)}
                 <button onClick={toggleTimer}>
@@ -122,4 +123,4 @@ export const Pomodoro = ({userId}) => {
     );
 };
 
-export default Pomodoro;
+export default SpacedRepetition;

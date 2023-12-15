@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Results.css';
 
-const Results = () => {
+const Results = ({ userId }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const recommendedMethod = location.state?.recommendedMethod || "Unsure";

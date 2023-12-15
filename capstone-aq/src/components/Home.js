@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 
 export const Home = ({setActiveTab}) => {
     const navigate = useNavigate();
+    const userId = Cookies.get('user_id');
 
-  
+    console.log(userId)
+
     useEffect(() => {
         // Reset the activeTab to 'register' when the component renders
         setActiveTab('/home');

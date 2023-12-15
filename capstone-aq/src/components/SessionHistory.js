@@ -1,8 +1,11 @@
 import React from 'react';
 import './SessionHistory.css';
 import { useState, useEffect } from 'react'
+import Cookies from 'js-cookie';
 
-export const SessionHistory = ({ userId }) => {
+export const SessionHistory = () => {
+    const userId = Cookies.get('user_id');
+
     // Dummy data for the example. You will fetch this data from your backend/database.
     const [sessionHistoryData, setSessionHistoryData] = useState([]);
 

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Assessment.css';
+import Cookies from 'js-cookie';
 
 const Assessment = () => {
+    
+    const userId = Cookies.get('user_id');
+
     const navigate = useNavigate();
     const questions = [
         "Do you prefer short, focused study sessions?",

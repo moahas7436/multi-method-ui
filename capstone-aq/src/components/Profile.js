@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
-
+import Cookies from 'js-cookie';
 export const Profile = ({setActiveTab}) => {
+    const userId = Cookies.get('user_id');
+
     useEffect(() => {
         // Reset the activeTab to 'register' when the component renders
         setActiveTab('/profile');

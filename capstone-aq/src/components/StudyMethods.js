@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StudyMethods.css';
 
-export const StudyMethods = () => {
+export const StudyMethods = ({ userId }) => {
     const navigate = useNavigate();
     const [methods, setMethods] = useState([
         {

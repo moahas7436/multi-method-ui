@@ -46,18 +46,18 @@ super(props)
             />
             <Route
               path="/home"
-              element={<Home setActiveTab={this.setActiveTab} />} // Pass setActiveTab as a prop
+              element={<Home setActiveTab={this.setActiveTab} userId={this.state.userId}/>} // Pass setActiveTab as a prop
             />
-            <Route path="/register" element={<Register setActiveTab={this.setActiveTab} />} />
+            <Route path="/register" element={<Register setActiveTab={this.setActiveTab} userId={this.state.userId} setUserId={this.setUserId}/>} />
             <Route
               path="/study-methods"
               element={<StudyMethods setActiveTab={this.setActiveTab} />} // Pass setActiveTab as a prop
             />
-            <Route path="/assessment" element={<Assessment />} />
-            <Route path="/results" element={<Results />} />
-            <Route path="/studysession" element={<StudySession userId={this.state.userId}/>} />
-            <Route path="/sessionhistory" element={<SessionHistory userId={this.state.userId} />} />
-            <Route path="/profile" element={<Profile setActiveTab={this.setActiveTab} />} />
+            <Route path="/assessment" element={<Assessment userId={this.state.userId} />} />
+            <Route path="/results" element={<Results userId={this.state.userId} />} />
+            <Route path="/studysession" element={<StudySession userId={this.state.userId} />} />
+            <Route path="/sessionhistory" element={<SessionHistory userId={this.state.userId}  />} />
+            <Route path="/profile" element={<Profile userId={this.state.userId} setActiveTab={this.setActiveTab} />} />
             {/* New route for the profile page */}
             {/* <Route path="*" element={<NotFoundPage />} /> Optional 404 page */}
           </Routes>

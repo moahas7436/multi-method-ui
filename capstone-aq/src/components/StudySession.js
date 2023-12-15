@@ -3,8 +3,13 @@ import './StudySession.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Pomodoro from './studyMethods/Pomodoro';
 import ThreeTwoOne from './studyMethods/ThreeTwoOne';
+import Cookies from 'js-cookie';
+import SpacedRepetition from './studyMethods/SpacedRepetition';
+import Priming from './studyMethods/Priming';
+import Feynman from './studyMethods/Feynman';
+export const StudySession = ({}) => {
+    const userId = Cookies.get('user_id');
 
-export const StudySession = ({userId}) => {
     const { state } = useLocation();
     const navigate = useNavigate();
     const [notes, setNotes] = useState('');
@@ -105,9 +110,25 @@ export const StudySession = ({userId}) => {
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    return (
-        state.method === "Pomodoro Technique" ? <Pomodoro userId={userId} /> : <ThreeTwoOne userId={userId}/>
-    );
+   
+  return (
+    <div className="study-session-container">
+      {state.method === 'Pomodoro Technique' ? (
+        <Pomodoro userId={userId} />
+      ) : state.method === '321 Method' ? (
+        <ThreeTwoOne userId={userId} />
+      ) : state.method === 'Feynman Technique' ?
+      <Feynman/> 
+      : state.method === 'Spaced Repetition' ?
+      <SpacedRepetition/> 
+      : state.method === 'Priming' ?
+      <Priming/> 
+      :
+      (
+        <div>Unknown study method: {state.method}</div>
+      )}
+    </div>
+  );
         // <div className="study-session-container">
         //       <h2>Study Session: {state?.method || "General Study"}</h2>
         //     <p>{state?.method && studyMethodDetails[state.method] ? studyMethodDetails[state.method].description : "General study session description."}</p>

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'; // Import the js-cookie library
+
 
 export const Login = ({ setActiveTab, setUserId }) => {
     const [email, setEmail] = useState('');
@@ -27,7 +29,7 @@ export const Login = ({ setActiveTab, setUserId }) => {
         };
 
         try {
-            // Send a POST request to your login endpoint
+            // Send a POST request to login endpoint
             const response = await fetch('/api/users/login', {
                 method: 'POST',
                 headers: {
@@ -37,20 +39,22 @@ export const Login = ({ setActiveTab, setUserId }) => {
             });
 
             if (response.ok) {
-                // Login was successful, you can handle the response here
+                // Login was successful, handle the response here
                 const data = await response.json();
                 console.log('Login successful', data);
 
                 // Store the JWT token in local storage or cookies for subsequent authenticated requests
                 localStorage.setItem('token', data.token);
+                Cookies.set('user_id', data.user_id, { expires: 7 }); // Expires in 7 days
+
                 // Set the userId in the state
                 setUserId(data.user_id);
                 // Redirect to another page upon successful login
-                navigate('/home'); // Replace '/dashboard' with your desired destination
+                navigate('/home'); 
             } else {
                 // Login failed, handle the error
                 console.error('Login failed');
-                // You can display an error message to the user here.
+                // Display an error message to the user here.
             }
         } catch (error) {
             console.error('Error:', error);
