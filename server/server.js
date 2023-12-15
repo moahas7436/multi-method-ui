@@ -17,7 +17,7 @@ app.use(express.json());
 
 
 const client = new Client({
-  user: 'user',
+  user: 'postgres',
   host: 'database-2.cgrhbmmrnxxj.us-east-1.rds.amazonaws.com',
   database: 'postgres',
   password: 'password',
