@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../StudySession.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-export const SpacedRepetition = ({userId}) => {
+export const SpacedRepetition = () => {
+    const userId = Cookies.get('user_id');
+
     const { state } = useLocation();
     const navigate = useNavigate();
     const [notes, setNotes] = useState('');

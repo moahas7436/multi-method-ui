@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../StudySession.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+export const Pomodoro = () => {
+    const userId = Cookies.get('user_id');
 
-export const Pomodoro = ({userId}) => {
     const { state } = useLocation();
     const navigate = useNavigate();
     const [notes, setNotes] = useState('');

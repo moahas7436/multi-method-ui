@@ -1,5 +1,5 @@
 .session-history-container {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
     height: 100vh;
@@ -23,6 +23,8 @@
     width: 100%;
     max-width: 500px;
     text-align: left;
+    margin-left: 25%
+
 }
 
 .session-history-entry h3 {
@@ -40,3 +42,34 @@
     font-style: italic;
     color: #007bff; /* Bright blue */
 }
+label[for="studyMethodFilter"] {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  #studyMethodFilter {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 200px; /* Adjust the width as needed */
+  }
+  .scrollable-entries {
+    margin-top: 100px;
+    max-height: 600px; /* Set the maximum height as needed */
+    overflow-y: auto;
+  }
+  .method-checkbox input {
+    margin-right: 5px; /* Adjust the margin as needed */
+
+  }
+  
+  .method-checkbox label {
+    padding-left: 5px; /* Adjust the padding as needed */
+  }
+
+  .method-checkbox {
+    color: white;
+    padding: 10px;
+  }

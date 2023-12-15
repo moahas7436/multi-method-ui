@@ -68,7 +68,7 @@ app.post('/api/users/register', async (req, res) => {
       'INSERT INTO public.users (username, email, password_hash, first_name, last_name, date_joined) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
       [username, email, password_hash, first_name, last_name, date_joined]
     );
-    console.log(newUser.rows[0])
+    // console.log(newUser.rows[0])
     res.json(newUser.rows[0]);
   } catch (error) {
     console.error(error.message);
@@ -93,10 +93,8 @@ app.post('/api/users/login', async (req, res) => {
     const user = result.rows[0];
 
     // Compare the provided password with the hashed password in the database
-    console.log(user)
-    console.log(user.password)
-    console.log(password)
-    console.log(await bcrypt.compare(password, user.password_hash))
+  
+    // console.log(await bcrypt.compare(password, user.password_hash))
     const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!passwordMatch) {
@@ -121,6 +119,7 @@ res.json({ token, user_id: user.user_id });
 app.post('/api/save-session', async (req, res) => {
   try {
     const { method, userId, methodId, startTime, endTime, duration, notes, feedback } = req.body;
+    // console.log('-------REQUEST BODY HERE -------------' + JSON.stringify(req.body))
 
     // Insert the study session data into the study_sessions table
     const query = `
@@ -131,7 +130,7 @@ app.post('/api/save-session', async (req, res) => {
     const values = [method, userId, methodId, startTime, endTime, duration, notes, feedback];
 
     const result = await pool.query(query, values);
-
+    console.log(result)
     res.status(201).json({ session_id: result.rows[0].session_id });
 } catch (error) {
     console.error('Error saving study session:', error);

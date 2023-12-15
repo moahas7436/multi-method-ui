@@ -60,3 +60,31 @@ button {
 button:hover {
     background-color: #0056b3; /* Darker shade of blue on hover */
 }
+
+h3 {
+    color: white !important;
+}
+
+.layout-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .left-section,
+  .center-section,
+  .right-section {
+    flex: 1;
+  }
+  
+  .left-section {
+    margin-right: 10px; /* Adjust as needed */
+  }sessionHistoryData
+  
+  .center-section {
+    margin: 0 10px; /* Adjust as needed */
+  }
+  
+  .right-section {
+    margin-left: 10px; /* Adjust as needed */
+  }

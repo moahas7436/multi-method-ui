@@ -17,6 +17,8 @@
     list-style: none;
     padding: 0;
     width: 100%; /* Ensures that the list covers the full width of its container */
+    margin-left: 50%;
+
 }
 
 .study-methods-container li {
