@@ -56,7 +56,7 @@ super(props)
             <Route path="/assessment" element={<Assessment userId={this.state.userId} />} />
             <Route path="/results" element={<Results userId={this.state.userId} />} />
             <Route path="/studysession" element={<StudySession userId={this.state.userId} />} />
-            <Route path="/sessionhistory" element={<SessionHistory userId={this.state.userId}  />} />
+            <Route path="/sessionhistory" element={<SessionHistory setActiveTab={this.setActiveTab} userId={this.state.userId}  />} />
             <Route path="/profile" element={<Profile userId={this.state.userId} setActiveTab={this.setActiveTab} />} />
             {/* New route for the profile page */}
             {/* <Route path="*" element={<NotFoundPage />} /> Optional 404 page */}

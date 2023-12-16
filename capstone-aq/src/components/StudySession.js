@@ -36,10 +36,7 @@ export const StudySession = ({}) => {
             sessionTime: 1800, // 30 minutes
             description: "The Feynman Technique involves teaching a concept you are trying to learn to someone else."
         },
-        'Spaced Repetition': {
-            sessionTime: 1200, // 20 minutes
-            description: "Spaced Repetition involves spreading out study sessions over time to improve long-term retention of material."
-        },
+   
         "Priming": {
             sessionTime: 2400, // 40 minutes
             description: "Priming involves preparing the brain for learning with a brief preliminary exposure to key concepts."

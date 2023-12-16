@@ -33,12 +33,12 @@ export const StudyMethods = () => {
             description: 'Learning by teaching and simplifying concepts.',
             details: 'n/a'
         },
-        {
-            id: 4,
-            name: 'Spaced Repetition',
-            description: 'Spreading out study sessions over time to improve long-term retention.',
-            details: 'n/a'
-        },
+        // {
+        //     id: 4,
+        //     name: 'Spaced Repetition',
+        //     description: 'Spreading out study sessions over time to improve long-term retention.',
+        //     details: 'n/a'
+        // },
         {
             id: 5,
             name: 'Priming',

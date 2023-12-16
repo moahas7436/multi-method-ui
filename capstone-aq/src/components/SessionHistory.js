@@ -2,10 +2,16 @@ import React from 'react';
 import './SessionHistory.css';
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie';
+import NavigationBar from './NavigationBar';
 
-export const SessionHistory = () => {
+export const SessionHistory = ({setActiveTab}) => {
     const userId = Cookies.get('user_id');
     const [selectedMethods, setSelectedMethods] = useState(['All']); // Default to showing all methods
+    
+    useEffect(() => {
+      // Reset the activeTab to 'register' when the component renders
+      setActiveTab('/sessionhistory');
+  }, []);
 
     // Dummy data for the example. You will fetch this data from your backend/database.
     const [sessionHistoryData, setSessionHistoryData] = useState([]);
@@ -15,7 +21,6 @@ export const SessionHistory = () => {
         '321 Method',
         'Feynman Technique',
         'Priming',
-        'Spaced Repetition'
         // Add more methods for each study method you have
       ];
     
@@ -69,6 +74,7 @@ export const SessionHistory = () => {
             });
     }, [userId]);
     return (
+      <>
         <div className="session-history-container">
           <h2>Study Session History</h2>
     <h3 style={{fontSize: "15pt"}}>Filter sessions by study method:</h3>
@@ -140,6 +146,7 @@ export const SessionHistory = () => {
               })}
           </div>
         </div>
+        </>
       );
     // return (
     //     <div className="session-history-container">
