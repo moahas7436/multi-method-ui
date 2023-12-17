@@ -5,7 +5,7 @@
     height: 100vh;
     padding: 20px;
     background-color: #1a1a1a; /* Dark background */
-    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    font-family: 'Comic Neue'; /* Comic-like font */
 }
 
 .session-history-container h2 {

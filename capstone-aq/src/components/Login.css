@@ -5,7 +5,7 @@
     align-items: center;
     height: 100vh;
     background-color: #1a1a1a; /* Dark background */
-    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    font-family: 'Comic Neue'; /* Comic-like font */
 }
 .login-container h1 {
     color: #007bff; /* Bright blue */

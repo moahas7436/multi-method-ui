@@ -5,7 +5,7 @@
     height: 100vh;
     padding: 20px;
     background-color: #1a1a1a; /* Dark background */
-    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    font-family: 'Comic Neue'; /* Comic-like font */
 }
 
 .study-session-container h2 {
@@ -41,7 +41,7 @@ textarea {
     padding: 10px;
     border: 1px solid #007bff; /* Blue border for textarea */
     border-radius: 5px;
-    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    font-family: 'Comic Neue'; /* Comic-like font */
     background: #222222; /* Dark background for textarea */
     color: #ffffff; /* White text for textarea */
 }

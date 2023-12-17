@@ -5,7 +5,7 @@
     padding: 20px;
     min-height: 100vh; /* Ensures that the container fills the screen height */
     background-color: #1a1a1a; /* Dark background */
-    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    font-family: 'Comic Neue'; /* Comic-like font */
     color: white; /* White text */
 }
 

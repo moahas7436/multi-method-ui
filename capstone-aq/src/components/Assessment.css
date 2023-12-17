@@ -1,12 +1,12 @@
 .assessment-container {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     background-color: #1a1a1a; /* Dark background */
     height: 100vh;
-    font-family: 'Comic Neue', cursive; /* Comic-like font */
+    font-family: 'Comic Neue'; /* Comic-like font */
     color: #ffffff; /* White text */
 }
 

@@ -41,7 +41,7 @@ const Assessment = () => {
     return (
         <div className="assessment-container">
             <h2>Learning Style Assessment</h2>
-            <form onSubmit={handleSubmit}>
+            <form style={{marginLeft: "50%"}}onSubmit={handleSubmit}>
                 {questions.map((question, index) => (
                     <div key={index} className="question">
                         <p>{question}</p>
